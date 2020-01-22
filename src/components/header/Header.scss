@@ -1,0 +1,51 @@
+  .posSearch {
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  
+  .font-1 {
+      font-size: 1em !important;
+  }
+  
+  .wCalc {
+      width: calc(100% - 6.2rem);
+  }
+  
+  .h-4rem {
+      height: 4rem;
+  }
+  
+  .textHash {
+      color: #999;
+      &:hover {
+          color: #999 !important;
+      }
+  }
+  
+  .bgColorFocus {
+      background-color: transparent;
+      &:focus {
+          background-color: #f2f4f8;
+      }
+  }
+  
+  .textLink {
+      text-decoration: none;
+      &:hover {
+          text-decoration: none;
+      }
+  }
+  
+  .badges {
+      &:after {
+          content: "";
+          position: absolute;
+          background: red;
+          height: .7rem;
+          right: 3.4rem;
+          width: .7rem;
+          border-radius: 50%;
+          color: white;
+          border: 1px solid red;
+      }
+  }

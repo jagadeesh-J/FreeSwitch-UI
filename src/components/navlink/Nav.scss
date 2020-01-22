@@ -1,0 +1,61 @@
+.actStyle {
+    background-color: rgba(172, 172, 172, 0.2);
+    color: #096f77 !important;
+    &:hover {
+        color: #096f77 !important;
+        text-decoration: none;
+    }
+}
+
+.colorDark {
+    color: #333;
+    &:hover {
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+.lineHeight-0 {
+    line-height: 0;
+}
+
+.right-half-cirle {
+    position: absolute;
+    top: 50vh;
+    right: 0;
+    z-index: 9999;
+    transform: translateY(-50%);
+    background-color: #aeaeae;
+    padding: .25rem .3rem .25rem .5rem;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    color: #fff;
+    display: none;
+    cursor: pointer;
+}
+
+.aside-nav {
+    overflow: hidden;
+    white-space: nowrap;
+    &:hover>.right-half-cirle {
+        display: block;
+    }
+}
+
+.slideIn {
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+    .fa-angle-right {
+        transform: rotate(180deg);
+        transition: transform 200ms ease-in-out;
+        -webkit-transition: all 200ms ease-in-out;
+    }
+}
+
+.slideOut {
+    all: 5%;
+    flex-basis: 5%;
+    transform: rotate(0);
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
