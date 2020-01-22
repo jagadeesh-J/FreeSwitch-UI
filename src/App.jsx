@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft  } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Row } from 'react-bootstrap';
 import history from './modules/history';
 import NotFound from './routes/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
+import Applications from './components/applications/Applications';
 import Nav from './components/navlink/Nav';
 import PublicRoute from './routes/PublicRoute';
 import { loadUsers } from "./store/actions";
@@ -18,7 +19,7 @@ import RunsResults from './components/runsresults/RunsResults';
 // import Home from './routes/Home';
 import './App.scss';
 
-library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft);
+library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt);
 
 export class App extends React.Component {
 
@@ -44,7 +45,7 @@ export class App extends React.Component {
         // if(request && request.token) {
             localStorage.setItem('auth', true);
             // localStorage.setItem('token', request.token);
-            // localStorage.setItem('username', data.username);
+            localStorage.setItem('username', data.username);
             this.setState({isAuthenticated: true});
             // this.setState({userName: data.username});
         // }
@@ -84,20 +85,20 @@ export class App extends React.Component {
                                 />
                                 <AuthenticatedRoute
                                     isAuthenticated={this.state.isAuthenticated}
-                                    path="/results"
+                                    path="/reports"
                                     component={RunsResults}
                                     exact
                                     user={user}
                                     handleEvent = {this.handleLogin}
                                 />
-                                {/* <AuthenticatedRoute
+                                <AuthenticatedRoute
                                     isAuthenticated={this.state.isAuthenticated}
-                                    path="/settings"
-                                    component={Home}
+                                    path="/applications"
+                                    component={Applications}
                                     exact
                                     user={user}
                                     handleEvent = {this.handleLogin}
-                                /> */}
+                                />
                                 <Route component={NotFound} />
                             </Switch>
                         </Row>

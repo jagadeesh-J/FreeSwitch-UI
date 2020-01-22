@@ -11,6 +11,12 @@ const Nav = (props) => {
   const [aside, setAside] = useState(props.user.isToggle);
   const navlinks = [
     { url: '/dashboard', title: 'Configuration Variables', icon: 'tachometer-alt'},
+    { url: '/reports', title: 'Reports', icon: 'chart-bar'},
+    { url: '/applications', title: 'Applications', icon: 'window-restore'},
+    { url: '/dialplan', title: 'Dialplan', icon: 'blender-phone'},
+    { url: '/expand', title: 'Extensions', icon: 'expand'},
+    { url: '/services', title: 'Services', icon: 'cogs'},
+    { url: '/logs', title: 'Logs', icon: 'file-alt'}
   ];
   const changeWidthEvent = () => {
     setAside(!aside);
@@ -38,8 +44,8 @@ const Nav = (props) => {
         {navlinks.map((link) => (
           <ListGroup.Item key={link.title} className="p-0 border-0 lineHeight-0">
             <NavLink activeClassName='actStyle' exact to={link.url} className="py-1 d-block colorDark">
-              <span className={aside ? 'offset-sm-2 text-center' : 'd-block text-center'}>
-                <FontAwesomeIcon className={aside ? "m-3 align-middle fa-lg" : "my-3 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
+              <span className={aside ? 'offset-sm-2 text-center' : 'd-block'}>
+                <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
               </span>
             </NavLink>
           </ListGroup.Item>

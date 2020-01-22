@@ -84,6 +84,9 @@ class serviceRequest {
         });
     }
 
+    static getConfigVariables() {
+      return serviceRequest.request(`/getxml`);
+    }
     static request(uri, options) {
         const {
             options: opts,
@@ -182,7 +185,7 @@ export const getDefaults = () => {
     // On first load/ On first login
     // _defaults.serviceURL && _defaults.options.headers.Authorization are undefined.
     if (!_defaults.serviceURL || !_defaults.options.headers.Authorization) {
-        _defaults.serviceURL = 'http://192.168.1.118:5002'
+        _defaults.serviceURL = 'http://192.168.1.186:5000'
         _defaults.options.headers = {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
