@@ -2,24 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Row } from 'react-bootstrap';
 import history from './modules/history';
 import NotFound from './routes/NotFound';
 import Dashboard from './components/dashboard/Dashboard';
 import Applications from './components/applications/Applications';
+import Dialplan from './components/dialplan/Dialplan';
+import Extensions from './components/extensions/Extensions';
 import Nav from './components/navlink/Nav';
 import PublicRoute from './routes/PublicRoute';
 import { loadUsers } from "./store/actions";
 import Login from './components/login/Login'
 import AuthenticatedRoute from './routes/AuthenticatedRoute';
 import serviceRequest from './serviceRequest';
-import RunsResults from './components/runsresults/RunsResults';
+import Reports from './components/reports/Reports';
 // import Home from './routes/Home';
 import './App.scss';
 
-library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt);
+library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose);
 
 export class App extends React.Component {
 
@@ -42,13 +44,13 @@ export class App extends React.Component {
     handleLogin = async (data) => {
         localStorage.clear();
         const request = await serviceRequest.login(data);
-        // if(request && request.token) {
+        if(request && request.access_token) {
             localStorage.setItem('auth', true);
-            // localStorage.setItem('token', request.token);
-            localStorage.setItem('username', data.username);
+            localStorage.setItem('token', `Bearer ${request.access_token}`);
+            // localStorage.setItem('username', data.username);
             this.setState({isAuthenticated: true});
             // this.setState({userName: data.username});
-        // }
+        }
     }
 
     render() {
@@ -86,7 +88,7 @@ export class App extends React.Component {
                                 <AuthenticatedRoute
                                     isAuthenticated={this.state.isAuthenticated}
                                     path="/reports"
-                                    component={RunsResults}
+                                    component={Reports}
                                     exact
                                     user={user}
                                     handleEvent = {this.handleLogin}
@@ -95,6 +97,22 @@ export class App extends React.Component {
                                     isAuthenticated={this.state.isAuthenticated}
                                     path="/applications"
                                     component={Applications}
+                                    exact
+                                    user={user}
+                                    handleEvent = {this.handleLogin}
+                                />
+                                <AuthenticatedRoute
+                                    isAuthenticated={this.state.isAuthenticated}
+                                    path="/dialplan"
+                                    component={Dialplan}
+                                    exact
+                                    user={user}
+                                    handleEvent = {this.handleLogin}
+                                />
+                                <AuthenticatedRoute
+                                    isAuthenticated={this.state.isAuthenticated}
+                                    path="/extensions"
+                                    component={Extensions}
                                     exact
                                     user={user}
                                     handleEvent = {this.handleLogin}

@@ -5,6 +5,7 @@ import "./Login.scss";
 const Login  = (props) => {
   const [show, setShowName] = useState(false);
   const user = useRef();
+  const passwd = useRef();
   const logo = "/fs-logo-thick-sm.png";
   const handleLogin = async(event) => {
     event.preventDefault();
@@ -12,7 +13,7 @@ const Login  = (props) => {
       setShowName(true);
       user.current.focus();
     } else
-      await props.handleEvent({'username': user.current.value});
+      await props.handleEvent({'username': user.current.value, 'password': passwd.current.value});
   };
   return (
     <Fragment>
@@ -39,6 +40,7 @@ const Login  = (props) => {
             <p>Login</p>
             <Form noValidate className="inputGroup" onSubmit={handleLogin}>
               <Form.Group controlId="formControl">
+              <div className='relative'>
                 <Form.Label className="Label">Username</Form.Label>
                 <Form.Control
                   type="text"
@@ -50,6 +52,20 @@ const Login  = (props) => {
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
+                </div>
+                <div className="relative">
+                <Form.Label className="Label">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  className="password"
+                  placeholder="Enter password"
+                  ref={passwd}
+                  autoFocus
+                  required
+                />
+                <span className="highlight"></span>
+                <span className="bar"></span>
+                </div>
               </Form.Group>
               <Button variant="danger" size="sm" className="loginBtn" type='submit'>
                 <span>Login</span>

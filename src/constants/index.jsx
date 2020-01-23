@@ -105,34 +105,6 @@ export const dataSource = [
   }
 ];
 
-export const columns = [
-  {
-    title: "Super Suite",
-    dataIndex: "ssuite",
-    key: "ssuite"
-  },
-  {
-    title: "Suite",
-    dataIndex: "suite",
-    key: "suite"
-  },
-  {
-    title: "Current Iteration",
-    dataIndex: "curiteration",
-    key: "curiteration"
-  },
-  {
-    title: "Progress",
-    dataIndex: "progress",
-    key: "progress"
-  },
-  {
-    title: "Start Time",
-    dataIndex: "starttime",
-    key: "starttime"
-  }
-];
-
 export const pastSource = [
   {
     key: "1",
@@ -347,4 +319,18 @@ export const pieChart = [
     "value": 571,
     "color": "hsl(286, 70%, 50%)"
   }
+];
+
+export const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Value',
+    dataIndex: 'value',
+    key: 'value',
+    editable: true
+  },
 ];

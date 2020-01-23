@@ -14,7 +14,7 @@ const Nav = (props) => {
     { url: '/reports', title: 'Reports', icon: 'chart-bar'},
     { url: '/applications', title: 'Applications', icon: 'window-restore'},
     { url: '/dialplan', title: 'Dialplan', icon: 'blender-phone'},
-    { url: '/expand', title: 'Extensions', icon: 'expand'},
+    { url: '/extensions', title: 'Extensions', icon: 'expand'},
     { url: '/services', title: 'Services', icon: 'cogs'},
     { url: '/logs', title: 'Logs', icon: 'file-alt'}
   ];

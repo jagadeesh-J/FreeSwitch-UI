@@ -6,47 +6,47 @@ import { Collapse } from "antd";
 import moment from "moment";
 import serviceRequest from '../../serviceRequest';
 import classNames from 'classnames';
-const Applications = props => {
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+const Extensions = props => {
   const { Panel } = Collapse;
-  const [barData, setBarData] = useState([]);
+  const [extansionData, setExtansionData] = useState([]);
   useEffect(() => {
+    async function getData() {
+      const data = await serviceRequest.getExtentionData();
+      if(data && data.xml) setExtansionData(data.xml);
+    }
+    getData();
   }, []);
-  const marginSet = { top: 10, right: 10, bottom: 80, left: 60 };
-
   return (
     <Col md={12} xl={10} className={classNames(props.isToggle ? '' : 'flexBasis', 'h-100 overflow-hidden')}>
       <Header setAuth={props.setAuth} />
       <Row className="mx-0 text-dark">
         <Col xs={12} className='pr-0 mBtmPx'>
-          <h4 className='text-secondary mb-0'>Application Editor</h4>
+          <h4 className='text-secondary mb-0'>Extensions Editor</h4>
         </Col>
       </Row>
       <Container fluid className='px-0 hFixScroll'>
         <Row noGutters={true} className="justify-content-between px-3">
           <Col sm={12} className="mBtmPx">
-          <div className="mr-3 card p-3 shadow-sm">
-          <Collapse defaultActiveKey={['1']} accordion>
-              <Panel header="Select Application" key="1">
-              <p>Inbound</p>
-              <p>OutBound</p>
-              </Panel>
-              <Panel header="Urls" key="2">
-              <p>http://ip:port/inboundapplicationurl</p>
-              <p>http://ip:port/outboundapplicationurl</p>
-              </Panel>
-              <Panel header="Application Parameters" key="3">
-              <p>Key: value</p>
-              </Panel>
-              <Panel header="Application Numbers" key="4">
-              <p>Range: 5001-5010</p>
-              <p>Range: 5011-5020</p>
-              </Panel>
+          <Collapse defaultActiveKey={['0']} accordion>
+          {
+            extansionData && extansionData.length > 0 ? extansionData.map((value, index) => {
+              return <Panel header={value.file_name} key={index}>
+                <p>{value.file_content}</p>
+                </Panel>
+              }) : <Panel header="No Data" key="1">
+              <p>{text}</p>
+            </Panel>
+          }
               </Collapse>
-              <div className="text-right">
+              <div className="float-right">
                 <Button className="m-1">Delete Application</Button>
                 <Button className="m-1">Revert</Button>
                 <Button className="m-1">Save Application</Button>
-              </div>
               </div>
           </Col>
         </Row>
@@ -55,4 +55,4 @@ const Applications = props => {
   );
 };
 
-export default Applications;
+export default Extensions;

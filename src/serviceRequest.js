@@ -9,27 +9,6 @@ class serviceRequest {
         });
     }
 
-    static getRegressionStatus(chart) {
-        return serviceRequest.request(`/regressionstatus?type=${chart}`);
-    }
-
-    static getRegressionBarStatus(chart) {
-        return serviceRequest.request(`/regressionbarstatus?${chart}`);
-    }
-
-    static getResultsTree() {
-        return serviceRequest.request('/resultstree');
-    }
-    static getFieldParams() {
-        return serviceRequest.request('/params');
-    }
-    static getResultsRunsDetail(data) {
-        return serviceRequest.request('/runsdetail', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-    }
-
     static getResultsRunsStackDetail(data) {
         return serviceRequest.request('/runsdetailstackgraph', {
             method: 'POST',
@@ -66,17 +45,6 @@ class serviceRequest {
             });
     }
 
-    static getResultsRunsDetailGraph(data) {
-        return serviceRequest.request('/runsdetailgraph', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-    }
-
-    static getProductsById(id, lang) {
-        return serviceRequest.request(`/products/${id}/${lang}`);
-    }
-
     static saveTranslations(data, lang) {
         return serviceRequest.request(`/translationssave/${lang}`, {
             method: 'POST',
@@ -86,6 +54,20 @@ class serviceRequest {
 
     static getConfigVariables() {
       return serviceRequest.request(`/getxml`);
+    }
+
+    static updateConfigVariables(data) {
+        return serviceRequest.request(`/getxml`, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }
+
+    static getXmlData() {
+      return serviceRequest.request(`/xmldataupdate`);
+    }
+    static getExtentionData() {
+      return serviceRequest.request(`/xmlfiles`);
     }
     static request(uri, options) {
         const {
@@ -197,7 +179,7 @@ export const getDefaults = () => {
     // Getting token from store state
     // store.state.token && store.getters.getToken returns token
     // console.log('localStorage.getItem', localStorage.getItem('token'));
-    _defaults.options.headers['x-access-token'] = localStorage.getItem('token');
+    _defaults.options.headers['Authorization'] = localStorage.getItem('token');
     // _defaults.options.headers['x-access-token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiZGRzZnMiLCJleHAiOjE1NzQwNTcwMzF9.fpb9a_y7XeDmCNshYBdrdzmwcO2zCDg9hziJHktXSBA';
     return _defaults;
 };
