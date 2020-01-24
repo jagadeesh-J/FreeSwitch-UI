@@ -66,3 +66,14 @@
     transition: all 200ms ease-in-out;
     -webkit-transition: all 200ms ease-in-out;
 }
+.minimize-logo{
+    display:none;
+}
+.menu-logo{
+    .minimize-logo{
+        display:block;
+    }
+    .maximize-logo{
+        display:none;
+    }
+}

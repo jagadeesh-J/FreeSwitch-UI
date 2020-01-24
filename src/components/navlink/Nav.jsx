@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 const Nav = (props) => {
   const logo = "/fs-logo-thick-sm.png";
+  const minimizelogo = "/fs-logo-minimize.jpg";
   const userIcon = "/bgimg.jpg";
   const [aside, setAside] = useState(props.user.isToggle);
   const navlinks = [
@@ -27,9 +28,10 @@ const Nav = (props) => {
       <div className="right-half-cirle" onClick={changeWidthEvent}>
         <FontAwesomeIcon className="align-middle fa-lg" icon='angle-right' />
       </div>
-      <Row noGutters={true} className='mb-3'>
-        <Col xs={10} className={aside ? 'offset-sm-1' : 'text-center'}>
-          <Image src={logo} alt='Logo' width='80%' className="py-3"/>
+      <Row noGutters={true} className='mb-3'>        
+        <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center menu-logo'}>
+          <Image src={minimizelogo} alt='Logo' width='42' className="py-3 minimize-logo"/>
+          <Image src={logo} alt='Logo' width='80%' className="py-3 maximize-logo"/>
         </Col>
         <hr className='mt-0 w-100' />
         <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center'}>
@@ -43,7 +45,7 @@ const Nav = (props) => {
       <ListGroup className="row">
         {navlinks.map((link) => (
           <ListGroup.Item key={link.title} className="p-0 border-0 lineHeight-0">
-            <NavLink activeClassName='actStyle' exact to={link.url} className="py-1 d-block colorDark">
+            <NavLink activeClassName='actStyle' exact to={link.url} className="pt-2 pb-2 d-block colorDark">
               <span className={aside ? 'offset-sm-1' : 'd-block text-center'}>
                 <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg icon" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
               </span>
