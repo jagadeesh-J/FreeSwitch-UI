@@ -28,12 +28,12 @@ const Nav = (props) => {
         <FontAwesomeIcon className="align-middle fa-lg" icon='angle-right' />
       </div>
       <Row noGutters={true} className='mb-3'>
-        <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center'}>
+        <Col xs={10} className={aside ? 'offset-sm-1' : 'text-center'}>
           <Image src={logo} alt='Logo' width='80%' className="py-3"/>
         </Col>
         <hr className='mt-0 w-100' />
         <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center'}>
-          <Image src={userIcon} alt='userIcon' width={aside ? "55" : "22"} height={aside ? "55" : "22"} className="rounded-circle d-inline-block" />
+          <Image src={userIcon} alt='userIcon' width={aside ? "55" : "30"} height={aside ? "55" : "30"} className="rounded-circle d-inline-block" />
             <div hidden={!aside} className='ml-3 d-inline-block align-middle'>
             <span className="text-dark">{props.user.userName}</span>
             <small className="text-muted d-block"> Role of user </small>
@@ -44,8 +44,8 @@ const Nav = (props) => {
         {navlinks.map((link) => (
           <ListGroup.Item key={link.title} className="p-0 border-0 lineHeight-0">
             <NavLink activeClassName='actStyle' exact to={link.url} className="py-1 d-block colorDark">
-              <span className={aside ? 'offset-sm-2 text-center' : 'd-block'}>
-                <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
+              <span className={aside ? 'offset-sm-1' : 'd-block text-center'}>
+                <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg icon" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
               </span>
             </NavLink>
           </ListGroup.Item>

@@ -25,7 +25,7 @@ const Dashboard = props => {
   const [configVariables, setconfigVariables] = useState([]);
   useEffect(() => {
     async function getData() {
-      const varibles = await serviceRequest.getConfigVariables();
+      const varibles = await serviceRequest.getXmlData('getxml');
       setconfigVariables(varibles);
     }
     getData();

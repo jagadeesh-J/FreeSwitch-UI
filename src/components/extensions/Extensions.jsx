@@ -16,11 +16,12 @@ const Extensions = props => {
   const [extansionData, setExtansionData] = useState([]);
   useEffect(() => {
     async function getData() {
-      const data = await serviceRequest.getExtentionData();
+      const data = await serviceRequest.getXmlData('xmlfiles');
       if(data && data.xml) setExtansionData(data.xml);
     }
     getData();
   }, []);
+  const disabled = extansionData.length > 0 ? true : false;
   return (
     <Col md={12} xl={10} className={classNames(props.isToggle ? '' : 'flexBasis', 'h-100 overflow-hidden')}>
       <Header setAuth={props.setAuth} />
@@ -37,15 +38,15 @@ const Extensions = props => {
             extansionData && extansionData.length > 0 ? extansionData.map((value, index) => {
               return <Panel header={value.file_name} key={index}>
                 <p>{value.file_content}</p>
+                <p>{text}</p>
                 </Panel>
               }) : <Panel header="No Data" key="1">
-              <p>{text}</p>
             </Panel>
           }
               </Collapse>
-              <div className="float-right">
+              <div className={disabled ? "float-right" : 'd-none'}>
                 <Button className="m-1">Delete Application</Button>
-                <Button className="m-1">Revert</Button>
+                <Button className="m-1" disabled="">Revert</Button>
                 <Button className="m-1">Save Application</Button>
               </div>
           </Col>

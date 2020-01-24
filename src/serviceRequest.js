@@ -9,41 +9,30 @@ class serviceRequest {
         });
     }
 
-    static getResultsRunsStackDetail(data) {
-        return serviceRequest.request('/runsdetailstackgraph', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-    }
-
-    static getRegressionStatusDetail(data) {
-        return serviceRequest.request(`/regressionstatusdetail/?${data}`);
-    }
-
-    static getResultsRunsDetailExport(data) {
-        return fetch('http://localhost:5002/runsdetailexport?data=' + encodeURIComponent(JSON.stringify(data)), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'data:text/csv; charset=utf-8',
-                    'Access-Control-Allow-Origin': '*',
-                    'x-access-token': localStorage.getItem('token')
-                }
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                var url = window.URL.createObjectURL(blob);
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = `Runs&Results_${new Date().valueOf()}.csv`;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                return JSON.stringify({ status: 'success' });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
+    // static getResultsRunsDetailExport(data) {
+    //     return fetch('http://localhost:5002/runsdetailexport?data=' + encodeURIComponent(JSON.stringify(data)), {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'data:text/csv; charset=utf-8',
+    //                 'Access-Control-Allow-Origin': '*',
+    //                 'x-access-token': localStorage.getItem('token')
+    //             }
+    //         })
+    //         .then(response => response.blob())
+    //         .then(blob => {
+    //             var url = window.URL.createObjectURL(blob);
+    //             var a = document.createElement('a');
+    //             a.href = url;
+    //             a.download = `Runs&Results_${new Date().valueOf()}.csv`;
+    //             document.body.appendChild(a);
+    //             a.click();
+    //             a.remove();
+    //             return JSON.stringify({ status: 'success' });
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
 
     static saveTranslations(data, lang) {
         return serviceRequest.request(`/translationssave/${lang}`, {
@@ -51,23 +40,14 @@ class serviceRequest {
             body: JSON.stringify(data)
         });
     }
-
-    static getConfigVariables() {
-      return serviceRequest.request(`/getxml`);
-    }
-
     static updateConfigVariables(data) {
         return serviceRequest.request(`/getxml`, {
             method: 'POST',
             body: JSON.stringify(data)
         });
     }
-
-    static getXmlData() {
-      return serviceRequest.request(`/xmldataupdate`);
-    }
-    static getExtentionData() {
-      return serviceRequest.request(`/xmlfiles`);
+    static getXmlData(url) {
+      return serviceRequest.request(`/${url}`);
     }
     static request(uri, options) {
         const {
@@ -167,7 +147,7 @@ export const getDefaults = () => {
     // On first load/ On first login
     // _defaults.serviceURL && _defaults.options.headers.Authorization are undefined.
     if (!_defaults.serviceURL || !_defaults.options.headers.Authorization) {
-        _defaults.serviceURL = 'http://192.168.1.186:5000'
+        _defaults.serviceURL = 'http://192.168.1.176:5000'
         _defaults.options.headers = {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
