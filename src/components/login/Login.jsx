@@ -12,6 +12,9 @@ const Login  = (props) => {
     if (!user.current.value) {
       setShowName(true);
       user.current.focus();
+    } else if (!user.current.value) {
+      setShowName(true);
+      passwd.current.focus();
     } else
       await props.handleEvent({'username': user.current.value, 'password': passwd.current.value});
   };
@@ -39,8 +42,8 @@ const Login  = (props) => {
             <span className="titleColor">{props.shortText}</span>
             <p>Login</p>
             <Form noValidate className="inputGroup" onSubmit={handleLogin}>
-              <Form.Group controlId="formControl">
-              <div className='relative'>
+            <div className='relative'>
+              <Form.Group controlId="formUser">
                 <Form.Label className="Label">Username</Form.Label>
                 <Form.Control
                   type="text"
@@ -52,21 +55,22 @@ const Login  = (props) => {
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
+                </Form.Group>
                 </div>
                 <div className="relative">
+                <Form.Group controlId="formPassswd">
                 <Form.Label className="Label">Password</Form.Label>
                 <Form.Control
                   type="password"
                   className="password"
                   placeholder="Enter password"
                   ref={passwd}
-                  autoFocus
                   required
                 />
                 <span className="highlight"></span>
                 <span className="bar"></span>
-                </div>
               </Form.Group>
+              </div>
               <Button variant="danger" size="sm" className="loginBtn" type='submit'>
                 <span>Login</span>
               </Button>

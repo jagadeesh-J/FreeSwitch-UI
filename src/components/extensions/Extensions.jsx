@@ -3,14 +3,8 @@ import React, { useEffect, useState, Fragment, useRef } from 'react';
 import { Row, Col, Button, Container } from "react-bootstrap";
 import Header from "../header/Header";
 import { Collapse } from "antd";
-import moment from "moment";
 import serviceRequest from '../../serviceRequest';
 import classNames from 'classnames';
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
 const Extensions = props => {
   const { Panel } = Collapse;
   const [extansionData, setExtansionData] = useState([]);
@@ -33,21 +27,22 @@ const Extensions = props => {
       <Container fluid className='px-0 hFixScroll'>
         <Row noGutters={true} className="justify-content-between px-3">
           <Col sm={12} className="mBtmPx">
-          <Collapse defaultActiveKey={['0']} accordion>
+          <div className="mr-3 card p-3 shadow-sm">
+          <Collapse bordered={false} defaultActiveKey={['0']} accordion>
           {
             extansionData && extansionData.length > 0 ? extansionData.map((value, index) => {
-              return <Panel header={value.file_name} key={index}>
+              return <Panel header={value.file_name} className="customPanelStyle" key={index}>
                 <p>{value.file_content}</p>
-                <p>{text}</p>
                 </Panel>
               }) : <Panel header="No Data" key="1">
             </Panel>
           }
               </Collapse>
-              <div className={disabled ? "float-right" : 'd-none'}>
+              <div className={disabled ? "text-right" : 'd-none'}>
                 <Button className="m-1">Delete Application</Button>
                 <Button className="m-1" disabled="">Revert</Button>
                 <Button className="m-1">Save Application</Button>
+              </div>
               </div>
           </Col>
         </Row>

@@ -25,8 +25,8 @@ const Applications = props => {
         <Row noGutters={true} className="justify-content-between px-3">
           <Col sm={12} className="mBtmPx">
           <div className="mr-3 card p-3 shadow-sm">
-          <Collapse defaultActiveKey={['1']} accordion>
-              <Panel header="Select Application" key="1">
+          <Collapse bordered={false} defaultActiveKey={['1']} accordion>
+              <Panel header="Select Application" className="customPanelStyle" key="1">
               <p>Inbound</p>
               <p>OutBound</p>
               </Panel>
@@ -34,10 +34,10 @@ const Applications = props => {
               <p>http://ip:port/inboundapplicationurl</p>
               <p>http://ip:port/outboundapplicationurl</p>
               </Panel>
-              <Panel header="Application Parameters" key="3">
+              <Panel header="Application Parameters" className="customPanelStyle" key="3">
               <p>Key: value</p>
               </Panel>
-              <Panel header="Application Numbers" key="4">
+              <Panel header="Application Numbers" className="customPanelStyle" key="4">
               <p>Range: 5001-5010</p>
               <p>Range: 5011-5020</p>
               </Panel>

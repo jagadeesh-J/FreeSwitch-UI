@@ -159,7 +159,6 @@ class EditableTable extends React.Component {
       <EditableContext.Provider value={this.props.form}>
         <Table
           components={components}
-          bordered
           dataSource={this.props.data}
           columns={columns}
           rowClassName="editable-row"
