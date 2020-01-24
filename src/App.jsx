@@ -47,9 +47,9 @@ export class App extends React.Component {
         if(request && request.access_token) {
             localStorage.setItem('auth', true);
             localStorage.setItem('token', `Bearer ${request.access_token}`);
-            // localStorage.setItem('username', data.username);
+            localStorage.setItem('username', data.username);
             this.setState({isAuthenticated: true});
-            // this.setState({userName: data.username});
+            this.setState({userName: data.username});
         }
     }
 
