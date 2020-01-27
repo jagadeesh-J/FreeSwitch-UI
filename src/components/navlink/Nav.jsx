@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Image, ListGroup, Row } from 'react-bootstrap';
+import { Col, Image, ListGroup, Row, Overlay, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import './Nav.scss';
 import classNames from 'classnames';
 
@@ -10,6 +10,8 @@ const Nav = (props) => {
   const minimizelogo = "/fs-logo-minimize.jpg";
   const userIcon = "/bgimg.jpg";
   const [aside, setAside] = useState(props.user.isToggle);
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
   const navlinks = [
     { url: '/dashboard', title: 'Configuration Variables', icon: 'tachometer-alt'},
     { url: '/reports', title: 'Reports', icon: 'chart-bar'},
@@ -23,12 +25,37 @@ const Nav = (props) => {
     setAside(!aside);
     props.user.setToggle(!aside);
   }
+  const overLay = (navlinks) => {
+    return <ListGroup className="row">
+      {navlinks.map((link, index) => (
+        <ListGroup.Item key={link.title} className="p-0 border-0 lineHeight-0">
+        <OverlayTrigger
+          key={index}
+          placement='bottom'
+          overlay={
+            <Tooltip id={`tooltip-${index}`}>
+              {link.title}
+            </Tooltip>
+          }
+        >
+          <NavLink activeClassName='actStyle' exact to={link.url} className="pt-2 pb-2 d-block colorDark">
+            <span className={aside ? 'offset-sm-1' : 'd-block text-center'}>
+              <React.Fragment>
+                <FontAwesomeIcon variant="secondary" className={aside ? "m-1 align-middle fa-lg icon" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
+                </React.Fragment>
+            </span>
+          </NavLink>
+          </OverlayTrigger>
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+  }
   return (
     <Col md={aside ? 3 : 1} xl={aside ? 2 : 1} className={classNames(aside ? "slideIn h-100" : "h-100 slideOut aside-width", "border-right bg-white shadow-sm aside-nav")}>
       <div className="right-half-cirle" onClick={changeWidthEvent}>
         <FontAwesomeIcon className="align-middle fa-lg" icon='angle-right' />
       </div>
-      <Row noGutters={true} className='mb-3'>        
+      <Row noGutters={true} className='mb-3'>
         <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center menu-logo'}>
           <Image src={minimizelogo} alt='Logo' width='42' className="py-3 minimize-logo"/>
           <Image src={logo} alt='Logo' width='80%' className="py-3 maximize-logo"/>
@@ -42,17 +69,17 @@ const Nav = (props) => {
             </div>
         </Col>
       </Row>
-      <ListGroup className="row">
-        {navlinks.map((link) => (
+      {!aside ? overLay(navlinks) : <ListGroup className="row">
+        {navlinks.map((link, index) => (
           <ListGroup.Item key={link.title} className="p-0 border-0 lineHeight-0">
             <NavLink activeClassName='actStyle' exact to={link.url} className="pt-2 pb-2 d-block colorDark">
               <span className={aside ? 'offset-sm-1' : 'd-block text-center'}>
-                <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg icon" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
+              <FontAwesomeIcon className={aside ? "m-1 align-middle fa-lg icon" : "my-1 align-middle fa-lg"} icon={link.icon} /> <span hidden={aside ? false : true}>{link.title}</span>
               </span>
             </NavLink>
           </ListGroup.Item>
         ))}
-      </ListGroup>
+      </ListGroup>}
     </Col>
   );
 }
