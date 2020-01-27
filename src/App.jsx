@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Row } from 'react-bootstrap';
 import history from './modules/history';
@@ -21,7 +21,7 @@ import Reports from './components/reports/Reports';
 // import Home from './routes/Home';
 import './App.scss';
 
-library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose);
+library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle);
 
 export class App extends React.Component {
 
@@ -52,7 +52,6 @@ export class App extends React.Component {
             this.setState({userName: data.username});
         }
     }
-
     render() {
         let user = {
             shortText: 'freeSwitch',
@@ -62,6 +61,7 @@ export class App extends React.Component {
             isToggle: this.state.isToggle,
             userName: this.state.userName,
         };
+
         return (
             <React.Fragment>
                 <div className="d-flex h-100 p-0">

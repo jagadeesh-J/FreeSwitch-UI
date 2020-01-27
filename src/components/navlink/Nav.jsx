@@ -1,13 +1,13 @@
 import React, {useState, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Image, ListGroup, Row, Overlay, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Col, Image, ListGroup, Row, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import './Nav.scss';
 import classNames from 'classnames';
 
 const Nav = (props) => {
-  const logo = "/fs-logo-thick-sm.png";
-  const minimizelogo = "/fs-logo-minimize.jpg";
+  const logo = "/fsLogo.png";
+  const minimizelogo = "/fsLogoMin.png";
   const userIcon = "/bgimg.jpg";
   const [aside, setAside] = useState(props.user.isToggle);
   const [show, setShow] = useState(false);
@@ -33,7 +33,7 @@ const Nav = (props) => {
           key={index}
           placement='bottom'
           overlay={
-            <Tooltip id={`tooltip-${index}`}>
+            <Tooltip className="toolTip" id={`tooltip-${index}`}>
               {link.title}
             </Tooltip>
           }
@@ -55,19 +55,20 @@ const Nav = (props) => {
       <div className="right-half-cirle" onClick={changeWidthEvent}>
         <FontAwesomeIcon className="align-middle fa-lg" icon='angle-right' />
       </div>
-      <Row noGutters={true} className='mb-3'>
-        <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center menu-logo'}>
+      <Row noGutters={true} className='mb-2'>
+        <Col xs={12} className={aside ? 'text-center' : 'text-center menu-logo'}>
           <Image src={minimizelogo} alt='Logo' width='42' className="py-3 minimize-logo"/>
-          <Image src={logo} alt='Logo' width='80%' className="py-3 maximize-logo"/>
+          <Image src={logo} alt='Logo' width='90%' className="py-3 maximize-logo"/>
         </Col>
         <hr className='mt-0 w-100' />
         <Col xs={10} className={aside ? 'offset-sm-2' : 'text-center'}>
-          <Image src={userIcon} alt='userIcon' width={aside ? "55" : "30"} height={aside ? "55" : "30"} className="rounded-circle d-inline-block" />
+          <Image src={userIcon} alt='userIcon' width={aside ? "43" : "30"} height={aside ? "43" : "30"} className="rounded-circle d-inline-block mb-2" />
             <div hidden={!aside} className='ml-3 d-inline-block align-middle'>
             <span className="text-dark">{props.user.userName}</span>
             <small className="text-muted d-block"> Role of user </small>
             </div>
         </Col>
+        <hr className='mt-2 w-100' />
       </Row>
       {!aside ? overLay(navlinks) : <ListGroup className="row">
         {navlinks.map((link, index) => (

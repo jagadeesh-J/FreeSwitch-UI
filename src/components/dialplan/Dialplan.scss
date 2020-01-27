@@ -41,3 +41,7 @@
     height: calc(100% - 111px);
     overflow-x: auto;
 }
+#dialplan .form-control {
+  border: 0 !important;
+  min-height: calc(100vh - 50vh);
+}

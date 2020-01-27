@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Table, Input, InputNumber, Form } from 'antd';
+import './table.scss';
 
 const EditableContext = React.createContext();
 
@@ -79,16 +80,16 @@ class EditableTable extends React.Component {
                     onClick={() => this.save(form, record.key)}
                     style={{ marginRight: 8 }}
                   >
-                  <FontAwesomeIcon icon='save' />
+                  <FontAwesomeIcon icon='save' className="icon green" />
                   </a>
                 )}
               </EditableContext.Consumer>
               <a onClick={() => this.cancel(record.key)}>
-              <FontAwesomeIcon icon='window-close' /></a>
+              <FontAwesomeIcon icon='window-close' className="icon red" /></a>
             </span>
           ) : (
             <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
-              <FontAwesomeIcon icon='edit' />
+              <FontAwesomeIcon icon='edit' color="#1565c0"/>
             </a>
           );
         },

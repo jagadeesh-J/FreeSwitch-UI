@@ -1,10 +1,11 @@
 /*eslint-disable no-eval */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
-import { Row, Col, Button, Container } from "react-bootstrap";
+import { Row, Col, Button, Container, Form } from "react-bootstrap";
 import Header from "../header/Header";
 import { Collapse } from "antd";
 import serviceRequest from '../../serviceRequest';
 import classNames from 'classnames';
+import './Extensions.scss';
 const Extensions = props => {
   const { Panel } = Collapse;
   const [extansionData, setExtansionData] = useState([]);
@@ -17,7 +18,7 @@ const Extensions = props => {
   }, []);
   const disabled = extansionData.length > 0 ? true : false;
   return (
-    <Col md={12} xl={10} className={classNames(props.isToggle ? '' : 'flexBasis', 'h-100 overflow-hidden')}>
+    <Col md={12} xl={10} id="extensions" className={classNames(props.isToggle ? '' : 'flexBasis', 'h-100 overflow-hidden')}>
       <Header setAuth={props.setAuth} />
       <Row className="mx-0 text-dark">
         <Col xs={12} className='pr-0 mBtmPx'>
@@ -32,16 +33,19 @@ const Extensions = props => {
           {
             extansionData && extansionData.length > 0 ? extansionData.map((value, index) => {
               return <Panel header={value.file_name} className="customPanelStyle" key={index}>
-                <p>{value.file_content}</p>
+                <p>{ value.file_content ?
+                  <Form.Group>
+                    <Form.Control border={false} as="textarea" defaultValue={value.file_content} onChange={(e) => setExtansionData(e.target.value)} />
+                  </Form.Group> : 'Nodata'}</p>
                 </Panel>
               }) : <Panel header="No Data" key="1">
             </Panel>
           }
               </Collapse>
-              <div className={disabled ? "text-right" : 'd-none'}>
-                <Button className="m-1">Delete Application</Button>
-                <Button className="m-1" disabled="">Revert</Button>
-                <Button className="m-1">Save Application</Button>
+              <div className={disabled ? "text-right pt-3" : 'd-none'}>
+                <Button className="m-1 btn-sm">Delete Application</Button>
+                <Button className="m-1" size="sm">Revert</Button>
+                <Button className="m-1" size="sm">Save Application</Button>
               </div>
               </div>
           </Col>

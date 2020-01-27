@@ -25,10 +25,13 @@ const Reports = props => {
       </Alert>
       <Header setAuth={props.setAuth} />
       <Row className="mx-0 text-dark">
-        <Col xs={6} className='pr-0 mBtmPx'>
+        <Col xs={12} className='pr-0 mBtmPx'>
           <h4 className='text-secondary mb-0'>Runs and Results</h4>
         </Col>
-        <Col xs={6} className="text-right pl-0 mBtmPx">
+        <Col xs={12} className="pl-0 mBtmPx">
+        <div className="mr-3 card p-3 shadow-sm">
+          <h4 className="text-muted text-center">No Data</h4>
+        </div>
         </Col>
       </Row>
     </Col>

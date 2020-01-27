@@ -6,7 +6,7 @@ const Login  = (props) => {
   const [show, setShowName] = useState(false);
   const user = useRef();
   const passwd = useRef();
-  const logo = "/fs-logo-thick-sm.png";
+  const logo = "/fsLogo.png";
   const handleLogin = async(event) => {
     event.preventDefault();
     if (!user.current.value) {
@@ -25,7 +25,7 @@ const Login  = (props) => {
           Please enter a username
         </span>
       </Alert>
-      <Col sm={8} lg={9} className="logo m-0">
+      <Col sm={8} lg={8} className="logo m-0">
         <Container fluid className="welText p-0">
           <span>
             Welcome to <b>{props.companyName}</b>
@@ -33,18 +33,15 @@ const Login  = (props) => {
           <p>Login to access your account</p>
         </Container>
       </Col>
-      <Col sm={4} lg={3} className="rightBox">
+      <Col sm={4} lg={4} className="rightBox">
         <Row className="h-100 justify-content-center">
-          <Col xs={12} align="right">
-            <Image src={logo} width="50%" alt="Logo" />
-          </Col>
+          <Col xs={12} align="left"></Col>
           <Col xs={12}>
-            <span className="titleColor">{props.shortText}</span>
-            <p>Login</p>
+            {/* <span className="titleColor">{props.shortText}</span> */}
+            <p><Image src={logo} width="70%" alt="Logo" /></p>
             <Form noValidate className="inputGroup" onSubmit={handleLogin}>
             <div className='relative'>
               <Form.Group controlId="formUser">
-                <Form.Label className="Label">Username</Form.Label>
                 <Form.Control
                   type="text"
                   className="userName"
@@ -59,7 +56,6 @@ const Login  = (props) => {
                 </div>
                 <div className="relative">
                 <Form.Group controlId="formPassswd">
-                <Form.Label className="Label">Password</Form.Label>
                 <Form.Control
                   type="password"
                   className="password"
@@ -71,7 +67,7 @@ const Login  = (props) => {
                 <span className="bar"></span>
               </Form.Group>
               </div>
-              <Button variant="danger" size="sm" className="loginBtn" type='submit'>
+              <Button size="sm" className="loginBtn" type='submit'>
                 <span>Login</span>
               </Button>
             </Form>

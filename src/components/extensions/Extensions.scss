@@ -44,3 +44,16 @@
 .customPanelStyle {
   border: 0
 }
+.ant-collapse-arrow {
+  background: rgba(0,0,0, 0.1);
+  padding: 3px;
+  border-radius: 4px;
+}
+.ant-collapse-item-active .ant-collapse-arrow {
+  background: #1565c0;
+  color: #fff !important;
+}
+#extensions .form-control {
+  border: 0 !important;
+  min-height: calc(100vh - 50vh);
+}

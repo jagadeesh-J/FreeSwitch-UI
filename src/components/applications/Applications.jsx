@@ -42,10 +42,10 @@ const Applications = props => {
               <p>Range: 5011-5020</p>
               </Panel>
               </Collapse>
-              <div className="text-right">
-                <Button className="m-1">Delete Application</Button>
-                <Button className="m-1">Revert</Button>
-                <Button className="m-1">Save Application</Button>
+              <div className="text-right pt-3">
+                <Button className="m-1" size="sm">Delete Application</Button>
+                <Button className="m-1" size="sm">Revert</Button>
+                <Button className="m-1" size="sm">Save Application</Button>
               </div>
               </div>
           </Col>
