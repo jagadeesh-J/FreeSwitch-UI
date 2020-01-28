@@ -1,0 +1,43 @@
+.hChart {
+    height: 350px;
+}
+
+.ant-switch {
+    background-color: #e55039;
+}
+
+.ant-switch-checked {
+    background-color: #6ab04c;
+}
+
+.font-14p {
+    font-size: 14px;
+}
+
+.anticon {
+    vertical-align: text-top;
+}
+
+.mBtmPx {
+    margin-bottom: 30px;
+}
+
+.widDate {
+    width: 200px;
+}
+
+.flexBasis {
+    flex-basis: 95%;
+    max-width: 95%;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+
+.backIcon {
+    font-size: 1.2rem;
+}
+
+.hFixScroll {
+    height: calc(100% - 111px);
+    overflow-x: auto;
+}

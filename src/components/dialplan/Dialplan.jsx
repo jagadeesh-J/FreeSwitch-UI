@@ -30,7 +30,7 @@ const Dialplan = props => {
               <div className="mr-3 card p-3 shadow-sm">
               <div className="text-dark">{ xmlData ?
                 <Form.Group>
-                  <Form.Control border={false} as="textarea" defaultValue={xmlData} onChange={(e) => setXmlData(e.target.value)} />
+                  <Form.Control as="textarea" defaultValue={xmlData} onChange={(e) => setXmlData(e.target.value)} />
                 </Form.Group> : 'Nodata'}</div>
               <div className={display ? "text-right pt-3" : "d-none"}>
                 <Button className="m-1" size="sm">Save</Button>

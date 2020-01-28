@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Row } from 'react-bootstrap';
 import history from './modules/history';
@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Applications from './components/applications/Applications';
 import Dialplan from './components/dialplan/Dialplan';
 import Extensions from './components/extensions/Extensions';
+import Services from './components/services/Services';
 import Nav from './components/navlink/Nav';
 import PublicRoute from './routes/PublicRoute';
 import { loadUsers } from "./store/actions";
@@ -21,7 +22,7 @@ import Reports from './components/reports/Reports';
 // import Home from './routes/Home';
 import './App.scss';
 
-library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle);
+library.add(fab, faCog, faChartBar, faTachometerAlt, faBell, faSearch, faAngleRight, faAngleLeft, faWindowRestore, faBlenderPhone, faExpand, faCogs, faFileAlt, faEdit, faSave, faWindowClose, faUserCircle, faRedo);
 
 export class App extends React.Component {
 
@@ -113,6 +114,14 @@ export class App extends React.Component {
                                     isAuthenticated={this.state.isAuthenticated}
                                     path="/extensions"
                                     component={Extensions}
+                                    exact
+                                    user={user}
+                                    handleEvent = {this.handleLogin}
+                                />
+                                <AuthenticatedRoute
+                                    isAuthenticated={this.state.isAuthenticated}
+                                    path="/services"
+                                    component={Services}
                                     exact
                                     user={user}
                                     handleEvent = {this.handleLogin}

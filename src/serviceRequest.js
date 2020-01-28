@@ -8,32 +8,6 @@ class serviceRequest {
             body: JSON.stringify(username)
         });
     }
-
-    // static getResultsRunsDetailExport(data) {
-    //     return fetch('http://localhost:5002/runsdetailexport?data=' + encodeURIComponent(JSON.stringify(data)), {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'data:text/csv; charset=utf-8',
-    //                 'Access-Control-Allow-Origin': '*',
-    //                 'x-access-token': localStorage.getItem('token')
-    //             }
-    //         })
-    //         .then(response => response.blob())
-    //         .then(blob => {
-    //             var url = window.URL.createObjectURL(blob);
-    //             var a = document.createElement('a');
-    //             a.href = url;
-    //             a.download = `Runs&Results_${new Date().valueOf()}.csv`;
-    //             document.body.appendChild(a);
-    //             a.click();
-    //             a.remove();
-    //             return JSON.stringify({ status: 'success' });
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // }
-
     static saveTranslations(data, lang) {
         return serviceRequest.request(`/translationssave/${lang}`, {
             method: 'POST',
@@ -147,7 +121,7 @@ export const getDefaults = () => {
     // On first load/ On first login
     // _defaults.serviceURL && _defaults.options.headers.Authorization are undefined.
     if (!_defaults.serviceURL || !_defaults.options.headers.Authorization) {
-        _defaults.serviceURL = 'http://192.168.1.182:4000'
+        _defaults.serviceURL = 'http://192.168.1.182:5000'
         _defaults.options.headers = {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
