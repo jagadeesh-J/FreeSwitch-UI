@@ -1,6 +1,6 @@
 /*eslint-disable no-eval */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
-import { Row, Col, Button, Container } from "react-bootstrap";
+import { Row, Col, Button, Container,Form,InputGroup,FormControl } from "react-bootstrap";
 import Header from "../header/Header";
 import { Collapse } from "antd";
 import moment from "moment";
@@ -27,19 +27,84 @@ const Applications = props => {
           <div className="mr-3 card p-3 shadow-sm">
           <Collapse bordered={false} defaultActiveKey={['1']} accordion>
               <Panel header="Select Application" className="customPanelStyle" key="1">
-              <p>Inbound</p>
-              <p>OutBound</p>
+              {/* <p>Inbound</p>
+              <p>OutBound</p> */}
+              <Form>
+                {['radio'].map(type => (
+                  <div key={`default-${type}`} className="mb-3">
+                    <Form.Check inline label="Inbound" name="apptype" type={type} id={`inline-${type}-1`} />
+                    <Form.Check inline label="Outbound" name="apptype" type={type} id={`inline-${type}-2`} />                    
+                  </div>
+                ))}
+              </Form>
               </Panel>
               <Panel header="Urls" key="2">
-              <p>http://ip:port/inboundapplicationurl</p>
-              <p>http://ip:port/outboundapplicationurl</p>
+
+              {/* <p>http://ip:port/inboundapplicationurl</p>
+              <p>http://ip:port/outboundapplicationurl</p>    */}
+
+              <InputGroup size="sm" className="mb-3">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroup-sizing-sm">URL</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="http://ip:port/inboundapplicationurl" />
+              </InputGroup>
+
+              <InputGroup size="sm" className="mb-3">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroup-sizing-sm">URL</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="http://ip:port/outboundapplicationurl" />
+              </InputGroup>
+             
               </Panel>
               <Panel header="Application Parameters" className="customPanelStyle" key="3">
-              <p>Key: value</p>
+              {/* <p>Key: value</p> */}
+              <Form>
+                <Form.Group as={Row} controlId="formPlaintextEmail">
+                  <Form.Label column sm="1">
+                    Email
+                  </Form.Label>
+                  <Col sm="11">
+                    <Form.Control plaintext defaultValue="email@example.com" />
+                  </Col>
+                </Form.Group>
+              </Form>
               </Panel>
               <Panel header="Application Numbers" className="customPanelStyle" key="4">
-              <p>Range: 5001-5010</p>
-              <p>Range: 5011-5020</p>
+              {/* <p>Range: 5001-5010</p>
+              <p>Range: 5011-5020</p> */}
+               <Form>
+                <Form.Group as={Row} controlId="">
+                  <Form.Label column sm="1">
+                  Range
+                  </Form.Label>
+                  <Col sm="">
+                    <Form.Control defaultValue="5001" />
+                  </Col>
+                  <Form.Label column sm="1" className="text-center">
+                    -
+                  </Form.Label>
+                  <Col sm="">
+                    <Form.Control defaultValue="5010" />
+                  </Col>
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="">
+                  <Form.Label column sm="1">
+                  Range
+                  </Form.Label>
+                  <Col sm="">
+                    <Form.Control defaultValue="5011" />
+                  </Col>
+                  <Form.Label column sm="1" className="text-center">
+                    -
+                  </Form.Label>
+                  <Col sm="">
+                    <Form.Control defaultValue="5020" />
+                  </Col>
+                </Form.Group>
+              </Form>
               </Panel>
               </Collapse>
               <div className="text-right pt-3">
