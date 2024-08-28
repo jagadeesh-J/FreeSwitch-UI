@@ -46,7 +46,7 @@
         "redux-saga": "^1.1.1",
         "redux-thunk": "^2.3.0",
         "sass-loader": "^8.0.0",
-        "webpack": "4.41.0"
+        "webpack": "5.94.0"
     },
     "scripts": {
         "start": "react-scripts start",
